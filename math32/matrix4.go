@@ -753,3 +753,13 @@ func (m *Matrix4) Clone() *Matrix4 {
 	cloned = *m
 	return &cloned
 }
+
+// GetColumn returns the ith column.
+func (m *Matrix4) GetColumn(i int) *Vector4 {
+	return NewVector4(m[i*4], m[i*4+1], m[i*4+2], m[i*4+3])
+}
+
+// GetRow returns the ith row.
+func (m *Matrix4) GetRow(i int) *Vector4 {
+	return NewVector4(m[i], m[i*4], m[i+8], m[i+12])
+}
