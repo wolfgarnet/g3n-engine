@@ -315,7 +315,7 @@ func (m *Matrix3) Clone() *Matrix3 {
 func (m *Matrix3) MultiplyVector3(v *Vector3) *Vector3 {
 	return &Vector3{
 		m[0]*v.X + m[1]*v.Y + m[2]*v.Z,
-		m[4]*v.X + m[5]*v.Y + m[6]*v.Z,
-		m[8]*v.X + m[9]*v.Y + m[10]*v.Z,
+		m[3]*v.X + m[4]*v.Y + m[5]*v.Z,
+		m[6]*v.X + m[7]*v.Y + m[8]*v.Z,
 	}
 }
