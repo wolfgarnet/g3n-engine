@@ -410,3 +410,15 @@ func (v *Vector2) InTriangle(p0, p1, p2 *Vector2) bool {
 
 	return s >= 0 && t >= 0 && (s+t) < 2*A*sign
 }
+
+// GetElement gets the ith element of the vector.
+func (v *Vector2) GetElement(i int) float32 {
+	switch i {
+	case 0:
+		return v.X
+	case 1:
+		return v.Y
+	default:
+		panic("No such index")
+	}
+}

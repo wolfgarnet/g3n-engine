@@ -683,3 +683,17 @@ func (v *Vector3) AlmostEquals(other *Vector3, tolerance float32) bool {
 func (v *Vector3) Vector4(w float32) *Vector4 {
 	return &Vector4{X: v.X, Y: v.Y, Z: v.Z, W: w}
 }
+
+// GetElement gets the ith element of the vector.
+func (v *Vector3) GetElement(i int) float32 {
+	switch i {
+	case 0:
+		return v.X
+	case 1:
+		return v.Y
+	case 2:
+		return v.Z
+	default:
+		panic("No such index")
+	}
+}

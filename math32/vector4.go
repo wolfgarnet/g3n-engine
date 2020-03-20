@@ -635,3 +635,19 @@ func (v *Vector4) Clone() *Vector4 {
 func (v *Vector4) Vector3() *Vector3 {
 	return &Vector3{X: v.X, Y: v.Y, Z: v.Z}
 }
+
+// GetElement gets the ith element of the vector.
+func (v *Vector4) GetElement(i int) float32 {
+	switch i {
+	case 0:
+		return v.X
+	case 1:
+		return v.Y
+	case 2:
+		return v.Z
+	case 3:
+		return v.W
+	default:
+		panic("No such index")
+	}
+}
