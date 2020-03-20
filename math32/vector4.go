@@ -636,8 +636,8 @@ func (v *Vector4) Vector3() *Vector3 {
 	return &Vector3{X: v.X, Y: v.Y, Z: v.Z}
 }
 
-// GetElement gets the ith element of the vector.
-func (v *Vector4) GetElement(i int) float32 {
+// GetAxis gets the ith axis of the vector.
+func (v *Vector4) GetAxis(i int) float32 {
 	switch i {
 	case 0:
 		return v.X
