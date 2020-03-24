@@ -24,7 +24,7 @@ func TestMatrix4_MultiplyVector4(t *testing.T) {
 		{
 			vector:NewVector4(1,1,1,1),
 			matrix:NewMatrix4().Set(1,1,1,1,2,2,2,2,3,3,3,3,4,4,4, 4),
-			expected:NewVector4(10,10,10,10),
+			expected:NewVector4(4,8,12,16),
 		},
 		{
 			vector:NewVector4(1,2,3,4),
@@ -34,12 +34,12 @@ func TestMatrix4_MultiplyVector4(t *testing.T) {
 		{
 			vector:NewVector4(1,2,3,4),
 			matrix:NewMatrix4().Set(1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4),
-			expected:NewVector4(10,20,30,40),
+			expected:NewVector4(30,30,30,30),
 		},
 		{
 			vector:NewVector4(1,1,1,1),
 			matrix:NewMatrix4().Set(2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1),
-			expected:NewVector4(5,5,5,5),
+			expected:NewVector4(8,4,4,4),
 		},
 		{
 			vector:NewVector4(2,1,1,1),
@@ -49,12 +49,12 @@ func TestMatrix4_MultiplyVector4(t *testing.T) {
 		{
 			vector:NewVector4(1,1,1,1),
 			matrix:NewMatrix4().Set(1,1,1,1,0,0,0,0,0,0, 0,0,0,0,0,0),
-			expected:NewVector4(1,1,1,1),
+			expected:NewVector4(4,0,0,0),
 		},
 		{
 			vector:NewVector4(1,1,1,1),
 			matrix:NewMatrix4().Set(1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0),
-			expected:NewVector4(4,0,0,0),
+			expected:NewVector4(1,1,1,1),
 		},
 	}
 
