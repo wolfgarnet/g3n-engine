@@ -635,7 +635,6 @@ func (v *Vector4) Clone() *Vector4 {
 func (v *Vector4) Vector3() *Vector3 {
 	return &Vector3{X: v.X, Y: v.Y, Z: v.Z}
 }
-<<<<<<< HEAD
 
 // GetAxis gets the ith axis of the vector.
 func (v *Vector4) GetAxis(i int) float32 {
@@ -668,5 +667,3 @@ func (v *Vector4) SetAxis(i int, value float32) {
 		panic("No such index")
 	}
 }
-=======
->>>>>>> tranformation-matrix-multiplication2

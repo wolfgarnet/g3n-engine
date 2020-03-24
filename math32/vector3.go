@@ -683,7 +683,6 @@ func (v *Vector3) AlmostEquals(other *Vector3, tolerance float32) bool {
 func (v *Vector3) Vector4(w float32) *Vector4 {
 	return &Vector4{X: v.X, Y: v.Y, Z: v.Z, W: w}
 }
-<<<<<<< HEAD
 
 // GetAxis gets the ith axis of the vector.
 func (v *Vector3) GetAxis(i int) float32 {
@@ -712,5 +711,3 @@ func (v *Vector3) SetAxis(i int, value float32) {
 		panic("No such index")
 	}
 }
-=======
->>>>>>> tranformation-matrix-multiplication2
