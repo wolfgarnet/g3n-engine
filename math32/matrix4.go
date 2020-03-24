@@ -764,14 +764,6 @@ func (m *Matrix4) MultiplyVector4(v *Vector4) *Vector4 {
 	}
 }
 
-// MultiplyVector3 multiples the upper left part of the matrix with the given vector3.
-func (m *Matrix4) MultiplyVector3(v *Vector3) *Vector3 {
-	return &Vector3{
-		m[0]*v.X + m[1]*v.Y + m[2]*v.Z,
-		m[4]*v.X + m[5]*v.Y + m[6]*v.Z,
-		m[8]*v.X + m[9]*v.Y + m[10]*v.Z,
-	}
-}
 
 // GetColumn returns the ith column.
 func (m *Matrix4) GetColumn(i int) *Vector4 {
@@ -799,5 +791,14 @@ func (m *Matrix4) TransformationMultiplyVector3(v *Vector3) *Vector3 {
 		m[0]*v.X + m[1]*v.Y + m[2]*v.Z + m[3],
 		m[4]*v.X + m[5]*v.Y + m[6]*v.Z + m[7],
 		m[8]*v.X + m[9]*v.Y + m[10]*v.Z + m[11],
+	}
+}
+
+// MultiplyVector3 multiples the upper part of the matrix with the given vector3 given a w value.
+func (m *Matrix4) MultiplyVector3(v *Vector3, w float32) *Vector3 {
+	return &Vector3{
+		m[0]*v.X + m[1]*v.Y + m[2]*v.Z + m[3] * w,
+		m[4]*v.X + m[5]*v.Y + m[6]*v.Z + m[7] * w,
+		m[8]*v.X + m[9]*v.Y + m[10]*v.Z + m[11] * w,
 	}
 }

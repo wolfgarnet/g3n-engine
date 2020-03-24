@@ -80,7 +80,7 @@ func TestMatrix4_TransformationMultiplyVector3(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		actual := test.m4.TransformationMultiplyVector3(&test.v3)
+		actual := test.m4.MultiplyVector3(&test.v3, 1)
 		expected := test.m4.MultiplyVector4(test.v3.Vector4(1)).Vector3()
 		assert.Equalf(t, expected, actual, "Failed test %v", i)
 	}
