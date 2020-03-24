@@ -64,7 +64,7 @@ func TestMatrix4_MultiplyVector4(t *testing.T) {
 	}
 }
 
-func TestMatrix4_TransformationMultiplyVector3(t *testing.T) {
+func TestMatrix4_MultiplyVector3(t *testing.T) {
 	tests := []struct{
 		m4 Matrix4
 		v3 Vector3
