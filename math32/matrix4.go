@@ -763,3 +763,12 @@ func (m *Matrix4) MultiplyVector4(v *Vector4) *Vector4 {
 		m[12]*v.X + m[13]*v.Y + m[14]*v.Z + m[15]*v.W,
 	}
 }
+
+// MultiplyVector3 multiples the upper left part of the matrix with the given vector3.
+func (m *Matrix4) TransformationMultiplyVector3(v *Vector3) *Vector3 {
+	return &Vector3{
+		m[0]*v.X + m[1]*v.Y + m[2]*v.Z + m[3],
+		m[4]*v.X + m[5]*v.Y + m[6]*v.Z + m[7],
+		m[8]*v.X + m[9]*v.Y + m[10]*v.Z + m[11],
+	}
+}
