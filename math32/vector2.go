@@ -434,3 +434,13 @@ func (v *Vector2) SetAxis(i int, value float32) {
 		panic("No such index")
 	}
 }
+
+// AlmostEquals returns whether the vector is almost equal to another vector within the specified tolerance.
+func (v *Vector2) AlmostEquals(other *Vector2, tolerance float32) bool {
+
+	if (Abs(v.X - other.X) < tolerance) &&
+		(Abs(v.Y - other.Y) < tolerance) {
+		return true
+	}
+	return false
+}
