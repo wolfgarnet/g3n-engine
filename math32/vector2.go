@@ -438,9 +438,17 @@ func (v *Vector2) SetAxis(i int, value float32) {
 // AlmostEquals returns whether the vector is almost equal to another vector within the specified tolerance.
 func (v *Vector2) AlmostEquals(other *Vector2, tolerance float32) bool {
 
-	if (Abs(v.X - other.X) < tolerance) &&
-		(Abs(v.Y - other.Y) < tolerance) {
+	if (Abs(v.X-other.X) < tolerance) &&
+		(Abs(v.Y-other.Y) < tolerance) {
 		return true
 	}
 	return false
+}
+
+// AngleTo returns the angle between this vector and other
+func (v *Vector2) AngleTo(other *Vector2) float32 {
+
+	theta := v.Dot(other) / (v.Length() * other.Length())
+	// clamp, to handle numerical problems
+	return Acos(Clamp(theta, -1, 1))
 }
