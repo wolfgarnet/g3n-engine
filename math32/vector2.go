@@ -404,3 +404,11 @@ func (v *Vector2) InTriangle(p0, p1, p2 *Vector2) bool {
 
 	return s >= 0 && t >= 0 && (s+t) < 2*A*sign
 }
+
+// AngleTo returns the angle between this vector and other
+func (v *Vector2) AngleTo(other *Vector2) float32 {
+
+	theta := v.Dot(other) / (v.Length() * other.Length())
+	// clamp, to handle numerical problems
+	return Acos(Clamp(theta, -1, 1))
+}
