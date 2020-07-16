@@ -473,7 +473,11 @@ func (d *Decoder) decProfileCommonTechnique(start xml.StartElement, pc *ProfileC
 			continue
 		}
 		if child.Name.Local == "lambert" {
-			log.Warn("LAMBERT not implemented yet")
+			//log.Warn("LAMBERT not implemented yet")
+			err := d.decLambert(child, pc)
+			if err != nil {
+				return err
+			}
 			continue
 		}
 		if child.Name.Local == "phong" {
@@ -562,6 +566,37 @@ func (d *Decoder) decBlinn(start xml.StartElement, pc *ProfileCOMMON) error {
 				return err
 			}
 			continue
+		}
+	}
+}
+
+func (d *Decoder) decLambert(start xml.StartElement, pc *ProfileCOMMON) error {
+
+	lambert := new(Lambert)
+	pc.Technique.ShaderElement = lambert
+
+	for {
+		child, _, err := d.decNextChild(start)
+		if err != nil || child.Name.Local == "" {
+			return err
+		}
+
+		switch child.Name.Local {
+		case "emission":
+			err := d.decColorOrTexture(child, &lambert.Emission)
+			if err != nil {
+				return err
+			}
+		case "diffuse":
+			err := d.decColorOrTexture(child, &lambert.Diffuse)
+			if err != nil {
+				return err
+			}
+		case "reflectivity":
+			err := d.decFloatOrParam(child, &lambert.Reflectivity)
+			if err != nil {
+				return err
+			}
 		}
 	}
 }

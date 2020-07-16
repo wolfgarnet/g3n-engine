@@ -157,7 +157,47 @@ func (d *Decoder) newConstantMaterial(se *Constant) (material.IMaterial, error) 
 
 func (d *Decoder) newLambertMaterial(se *Lambert) (material.IMaterial, error) {
 
-	return nil, fmt.Errorf("Not implemented")
+
+	// Creates material with default color
+	m := material.NewStandard(&math32.Color{0.5, 0.5, 0.5})
+
+	// If "diffuse" is Color set its value in the material
+	_, ok := se.Diffuse.(*Color)
+	if ok {
+		color := getColor(se.Diffuse)
+		m.SetColor(&color)
+	} else {
+		// Diffuse must be a Texture
+		tex, ok := se.Diffuse.(*Texture)
+		if !ok {
+			return nil, fmt.Errorf("diffuse is not Color nor Texture")
+		}
+		// Get texture 2D
+		tex2D, err := d.GetTexture2D(tex.Texture)
+		if err != nil {
+			return nil, err
+		}
+		// Add texture to this material
+		m.AddTexture(tex2D)
+	}
+
+	emission := getColor(se.Emission)
+	m.SetEmissiveColor(&emission)
+
+	//ambient := getColor(se.Ambient)
+	//m.SetAmbientColor(&ambient)
+
+	specular := getColor(se.Reflectivity)
+	m.SetSpecularColor(&specular)
+
+	//shininess := getFloatOrParam(se.Shininess)
+	//m.SetShininess(shininess)
+
+	//m.SetOpacity(opacity float32) {
+	//m.SetWireframe(true)
+	m.SetSide(material.SideDouble)
+
+	return m, nil
 }
 
 func (d *Decoder) newPhongMaterial(se *Phong) (material.IMaterial, error) {
