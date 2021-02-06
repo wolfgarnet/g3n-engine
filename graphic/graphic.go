@@ -234,7 +234,10 @@ func (gr *Graphic) BoundingBox() math32.Box3 {
 
 	geom := gr.igeom.GetGeometry()
 	bbox := geom.BoundingBox()
-	bbox.MultiplyByVector(gr.Scale())
+	//bbox.MultiplyByVector(gr.Scale())
+	//bbox.ApplyMatrix4(gr.Matrix())
+	m := gr.Matrix()
+	bbox.ApplyMatrix4(&m)
 	for _, inode := range gr.Children() {
 		childGraphic, ok := inode.(*Graphic)
 		if ok {
