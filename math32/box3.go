@@ -214,7 +214,7 @@ func (b *Box3) GetBoundingSphere(optionalTarget *Sphere) *Sphere {
 	var v1 Vector3
 	var result *Sphere
 	if optionalTarget == nil {
-		result = NewSphere(nil, 0)
+		result = NewSphere(&Vector3{}, 0)
 	} else {
 		result = optionalTarget
 	}
